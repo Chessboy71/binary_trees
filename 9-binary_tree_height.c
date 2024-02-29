@@ -1,18 +1,19 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_is_leaf - Deletes a whole binary tree.
- * @node: A pointer to the node.
+ * binary_tree_height - Deletes a whole binary tree.
+ * @tree: A pointer to the node.
  *
- * Return: 1 if a leaf.
- *         Otherwise - 0.
+ * Return: the height of the node
  */
 
-int binary_tree_is_leaf(const binary_tree_t *node)
+size_t binary_tree_height(const binary_tree_t *tree)
 {
-	if (!node)
+	if (!tree)
 		return (0);
-	if (node->left == NULL && node->right == NULL)
+	if (tree->left == NULL && tree->right == NULL)
+		return (0);
+	else if (tree->right && tree->left == NULL)
 		return (1);
-	return (0);
+	return (binary_tree_height(tree->left) + 1);
 }
