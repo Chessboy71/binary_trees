@@ -1,18 +1,19 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_is_leaf - Deletes a whole binary tree.
- * @node: A pointer to the node.
+ * binary_tree_nodes - calculates nodes .
+ * @tree: A pointer to the node.
  *
- * Return: 1 if a leaf.
+ * Return: the number of nodes with at least 1 child.
  *         Otherwise - 0.
  */
 
-int binary_tree_is_leaf(const binary_tree_t *node)
+size_t binary_tree_nodes(const binary_tree_t *tree)
 {
-	if (!node)
-		return (0);
-	if (node->left == NULL && node->right == NULL)
-		return (1);
+	if (tree)
+	{
+		if (tree->left != NULL || tree->right != NULL)
+			return (binary_tree_nodes(tree->left) + binary_tree_nodes(tree->right) + 1);
+	}
 	return (0);
 }
