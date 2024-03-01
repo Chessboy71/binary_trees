@@ -1,18 +1,21 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_is_leaf - Deletes a whole binary tree.
- * @node: A pointer to the node.
+ * binary_tree_depth - returns the depth of a node.
+ * @tree: A pointer to the node.
  *
- * Return: 1 if a leaf.
+ * Return: the depth of the node.
  *         Otherwise - 0.
  */
 
-int binary_tree_is_leaf(const binary_tree_t *node)
+size_t binary_tree_depth(const binary_tree_t *tree)
 {
-	if (!node)
-		return (0);
-	if (node->left == NULL && node->right == NULL)
-		return (1);
+	if (tree)
+	{
+		if (!tree->parent)
+			return (0);
+		return (binary_tree_depth(tree->parent) + 1);
+	}
 	return (0);
+
 }
